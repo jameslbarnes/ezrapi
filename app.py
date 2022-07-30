@@ -44,6 +44,7 @@ def findQuotes(text, resultCount):
     global stored_data
     global stored_sentences
     global stored_embeddings
+    global list_of_csv
 
     for x in list_of_csv:
         quote_list.append(x[0] + ", " + x[1] + ", " + x[2])
