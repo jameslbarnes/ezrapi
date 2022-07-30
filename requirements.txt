@@ -3,5 +3,4 @@ transformers
 accelerate
 sentence_transformers
 torch
-pickle
 openai
