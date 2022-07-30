@@ -4,6 +4,7 @@ import csv
 import pickle
 import openai
 import os
+import requests
 
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
@@ -16,12 +17,22 @@ def init():
     
     device = 0 if torch.cuda.is_available() else -1
 
-    with open('https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=1', "rb") as fIn:
+    modelURL = "https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=1"
+    response = requests.get(modelURL)
+    open("embeddings.pkl", "wb").write(response.content)
+
+    csvURL = "https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=1'"
+    response = requests.get(csvURL)
+    open("quote3.csv", "wb").write(response.content)
+
+
+
+    with open('embeddings.pkl', "rb") as fIn:
         stored_data = pickle.load(fIn)
         stored_sentences = stored_data['quote_list']
         stored_embeddings = stored_data['corpus_embeddings']
 
-    with open('https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=1', 'r') as read_obj:
+    with open('quote3.csv', 'r') as read_obj:
         csv_reader = csv.reader(read_obj)
         list_of_csv = list(csv_reader)
         quote_list = []
