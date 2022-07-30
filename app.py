@@ -47,7 +47,7 @@ def findQuotes(text, resultCount):
 
     print("\n\n======================\n\n")
     print("Query:", query)
-    print("\nTop 5 most similar sentences in corpus:")
+    print("\nMost similar quotes in corpus:")
 
     for score, idx in zip(top_results[0], top_results[1]):
         quotes.append([quote_list[idx], "(Score: {:.4f})".format(score)])
