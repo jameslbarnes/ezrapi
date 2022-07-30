@@ -16,12 +16,12 @@ def init():
     
     device = 0 if torch.cuda.is_available() else -1
 
-    with open('https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=0', "rb") as fIn:
+    with open('https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=1', "rb") as fIn:
         stored_data = pickle.load(fIn)
         stored_sentences = stored_data['quote_list']
         stored_embeddings = stored_data['corpus_embeddings']
 
-    with open('https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=0', 'r') as read_obj:
+    with open('https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=1', 'r') as read_obj:
         csv_reader = csv.reader(read_obj)
         list_of_csv = list(csv_reader)
         quote_list = []
