@@ -16,6 +16,7 @@ def init():
     global stored_data
     global stored_sentences
     global stored_embeddings
+    global list_of_csv
     
     device = 0 if torch.cuda.is_available() else -1
 
