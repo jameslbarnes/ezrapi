@@ -5,7 +5,7 @@ import pickle
 import openai
 import os
 import requests
-
+#ugh
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Init is ran on server startup
