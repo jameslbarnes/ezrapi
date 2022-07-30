@@ -6,7 +6,7 @@ import openai
 import os
 import requests
 
-embedder = SentenceTransformer('all-MiniLM-L6-v2')
+embedder = SentenceTransformer('all-MiniLM-L6-v2')\
 
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
@@ -16,6 +16,7 @@ def init():
     global stored_data
     global stored_sentences
     global stored_embeddings
+    global list_of_csv
     
     device = 0 if torch.cuda.is_available() else -1
 
