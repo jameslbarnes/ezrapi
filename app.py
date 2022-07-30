@@ -6,7 +6,7 @@ import openai
 import os
 import requests
 
-embedder = SentenceTransformer('all-MiniLM-L6-v2')\
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
