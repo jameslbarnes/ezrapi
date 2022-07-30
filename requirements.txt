@@ -1,3 +1,9 @@
 sanic
 transformers
 accelerate
+sentence_transformers
+torch
+csv
+pickle
+openai
+os
