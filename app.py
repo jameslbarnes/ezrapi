@@ -70,8 +70,6 @@ def findQuotes(text, resultCount):
 # Reference your preloaded global model variable here.
 def inference(model_inputs:dict) -> dict:
     global model
-    print(list_of_csv)
-
     # Parse out your arguments
     prompt = model_inputs.get('prompt', None)
     if prompt == None:
