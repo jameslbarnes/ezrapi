@@ -57,7 +57,7 @@ def findQuotes(text, resultCount):
     top_results = torch.topk(cos_scores, k=top_k)
 
     print("\n\n======================\n\n")
-    print("Query:", query)
+    print("Query:", text)
     print("\nMost similar quotes in corpus:")
 
     for score, idx in zip(top_results[0], top_results[1]):
