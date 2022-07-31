@@ -5,7 +5,8 @@ import pickle
 import openai
 import os
 import requests
-#ugh
+import urllib.request
+
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Init is ran on server startup
@@ -20,15 +21,11 @@ def init():
     
     device = 0 if torch.cuda.is_available() else -1
 
-    modelURL = "https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=1"
-    response = requests.get(modelURL)
-    open("embeddings.pkl", "wb").write(response.content)
+    print('downloading files')
 
-    csvURL = "https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=1'"
-    response = requests.get(csvURL)
-    open("quote3.csv", "wb").write(response.content)
-
-
+    urllib.request.urlretrieve("https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=1", "embeddings.pkl")
+    urllib.request.urlretrieve("https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=1", "quote3.csv")
+  
 
     with open('embeddings.pkl', "rb") as fIn:
         stored_data = pickle.load(fIn)
@@ -45,7 +42,6 @@ def findQuotes(text, resultCount):
     global stored_data
     global stored_sentences
     global stored_embeddings
-    global list_of_csv
 
     for x in list_of_csv:
         quote_list.append(x[0] + ", " + x[1] + ", " + x[2])
@@ -74,6 +70,7 @@ def findQuotes(text, resultCount):
 # Reference your preloaded global model variable here.
 def inference(model_inputs:dict) -> dict:
     global model
+    print(list_of_csv)
 
     # Parse out your arguments
     prompt = model_inputs.get('prompt', None)
