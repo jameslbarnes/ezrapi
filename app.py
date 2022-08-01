@@ -44,7 +44,7 @@ def findQuotes(text, resultCount):
     global stored_embeddings
 
     for x in list_of_csv:
-        quote_list.append(x[0] + ", " + x[1] + ", " + x[2])
+        quote_list.append(x[0] + ", Author: " + x[1] + ", Tags: " + x[2])
 
     top_k = min(resultCount, len(quote_list))
 
