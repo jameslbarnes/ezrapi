@@ -3,11 +3,21 @@
 
 # In this example: A Huggingface BERT model
 
+import urllib.request
+
 from transformers import pipeline
+
 
 def download_model():
     # do a dry run of loading the huggingface model, which will download weights
     pipeline('fill-mask', model='bert-base-uncased')
+    print('downloading files')
+
+    urllib.request.urlretrieve(
+        "https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=1", "embeddings.pkl")
+    urllib.request.urlretrieve(
+        "https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=1", "quote3.csv")
+
 
 if __name__ == "__main__":
     download_model()

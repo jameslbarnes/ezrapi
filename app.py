@@ -2,15 +2,14 @@ from sentence_transformers import SentenceTransformer, util
 import torch
 import csv
 import pickle
-import openai
-import os
-import requests
-import urllib.request
+
 
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
+
+
 def init():
     global model
     global quote_list
@@ -18,14 +17,8 @@ def init():
     global stored_sentences
     global stored_embeddings
     global list_of_csv
-    
+
     device = 0 if torch.cuda.is_available() else -1
-
-    print('downloading files')
-
-    urllib.request.urlretrieve("https://www.dropbox.com/s/5gu5z9qblbv2s1h/embeddings.pkl?dl=1", "embeddings.pkl")
-    urllib.request.urlretrieve("https://www.dropbox.com/s/np49qp0wcgdsxwv/quote3.csv?dl=1", "quote3.csv")
-  
 
     with open('embeddings.pkl', "rb") as fIn:
         stored_data = pickle.load(fIn)
@@ -36,6 +29,7 @@ def init():
         csv_reader = csv.reader(read_obj)
         list_of_csv = list(csv_reader)
         quote_list = []
+
 
 def findQuotes(text, resultCount):
     global quote_list
@@ -68,17 +62,17 @@ def findQuotes(text, resultCount):
 
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
-def inference(model_inputs:dict) -> dict:
+
+
+def inference(model_inputs: dict) -> dict:
     global model
     # Parse out your arguments
     prompt = model_inputs.get('prompt', None)
     if prompt == None:
         return {'message': "No prompt provided"}
-    
+
     # Run the model
     result = findQuotes(prompt, 5)
 
     # Return the results as a dictionary
     return result
-
-   
