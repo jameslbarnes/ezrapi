@@ -9,6 +9,7 @@ embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
 
 def init():
+    # dummy change
     global model
 
     device = 0 if torch.cuda.is_available() else -1
