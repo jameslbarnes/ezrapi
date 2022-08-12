@@ -2,7 +2,7 @@ from sentence_transformers import SentenceTransformer
 import torch
 
 
-embedder = SentenceTransformer('all-MiniLM-L6-v2')
+
 
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
@@ -12,11 +12,13 @@ def init():
     # dummy change
     global model
 
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+
     device = 0 if torch.cuda.is_available() else -1
 
 
 def getEmbeddings(text):
-    query_embedding = embedder.encode(text, convert_to_tensor=True)
+    query_embedding = model.encode(text, convert_to_tensor=True)
     embedding_json = {"embedding": [
         float(i) for i in list(query_embedding.cpu().numpy())]}
 
